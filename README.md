@@ -21,10 +21,12 @@ git clone https://github.com/Mumega-com/mumcp-claude-plugin.git ~/.claude/plugin
 ### Skills (slash commands)
 | Command | What it does |
 |---------|-------------|
-| `/mumcp:connect` | Set up MCP connection to a WordPress site |
+| `/mumcp:setup` | **Start here** — guided first-time setup |
+| `/mumcp:connect` | MCP config reference for all clients |
 | `/mumcp:tools` | Browse all 239 tools by category |
 | `/mumcp:elementor` | Elementor building guide — layouts, widgets, flex grids |
 | `/mumcp:design` | Modern web design principles for page building |
+| `/mumcp:status` | Check plugin version, Elementor, and available updates |
 
 ### Agents
 | Agent | What it does |
@@ -34,12 +36,12 @@ git clone https://github.com/Mumega-com/mumcp-claude-plugin.git ~/.claude/plugin
 ## Quick Start
 
 1. Install the plugin (see above)
-2. Install mumcp on your WordPress site:
-   ```bash
-   wp plugin install https://mumega.com/mcp-updates/mumega-mcp-latest.zip --activate
-   ```
-3. Run `/mumcp:connect` and follow the guided setup
-4. Start building: "Build a landing page with a hero section, 3 feature cards, and a CTA"
+2. Run `/mumcp:setup` — it walks you through everything:
+   - Installing mumcp on your WordPress site
+   - Generating an API key
+   - Configuring your MCP client
+   - Verifying the connection
+3. Start building: "Build a landing page with a hero section, 3 feature cards, and a CTA"
 
 ## What is mumcp?
 

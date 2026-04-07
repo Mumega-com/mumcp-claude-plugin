@@ -1,63 +1,98 @@
 ---
 name: connect
-description: Set up a mumcp MCP connection to a WordPress site. Guided install, API key generation, and MCP config for Claude, Cursor, Windsurf, Gemini.
+description: MCP connection reference for Claude Code, Claude Desktop, Cursor, and Windsurf. Use /mumcp:setup for first-time guided setup.
 user-invocable: true
 ---
 
-# Connect to WordPress
+# MCP Connection Reference
 
-Set up a mumcp connection to a WordPress site. $ARGUMENTS = site URL and API key, or "setup" for guided flow.
+Quick reference for connecting different MCP clients to a mumcp-enabled WordPress site. $ARGUMENTS = client name or site URL + API key.
 
-## Guided Setup
+> First time? Run `/mumcp:setup` instead — it walks you through everything interactively.
 
-If no arguments provided, walk the user through:
+## Config Template
 
-1. **Install mumcp on WordPress:**
-   ```bash
-   wp plugin install https://mumega.com/mcp-updates/mumega-mcp-latest.zip --activate
-   ```
-   Or download from https://mucp.mumega.com and install via WP Admin > Plugins > Add New > Upload.
+Replace `YOUR-SITE.com` and `spai_YOUR_KEY` in every config below.
 
-2. **Generate API key:**
-   In WP Admin > mumcp > Settings, click "Generate API Key". Copy the key (starts with `spai_`).
+## Claude Code
 
-3. **Add MCP config:**
-   Add this to your Claude Code settings (or project `.mcp.json`):
-   ```json
-   {
-     "mcpServers": {
-       "mumcp": {
-         "url": "https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/mcp",
-         "headers": {"X-API-Key": "spai_YOUR_KEY"}
-       }
-     }
-   }
-   ```
-
-4. **Test connection:**
-   Call `wp_introspect()` — should return site info, tools, and capabilities.
-
-## Quick Connect (with arguments)
-
-If user provides URL and key:
-```
-/mumcp:connect https://example.com spai_abc123...
+**Global** (`~/.claude/settings.json`):
+```json
+{
+  "mcpServers": {
+    "mumcp": {
+      "url": "https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/mcp",
+      "headers": {"X-API-Key": "spai_YOUR_KEY"}
+    }
+  }
+}
 ```
 
-Generate the MCP config JSON and tell them where to save it:
-- Global: `~/.claude/settings.json` under `mcpServers`
-- Project: `.mcp.json` in project root
-- Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows)
+**Per-project** (`.mcp.json` in project root):
+```json
+{
+  "mcpServers": {
+    "mumcp": {
+      "url": "https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/mcp",
+      "headers": {"X-API-Key": "spai_YOUR_KEY"}
+    }
+  }
+}
+```
 
-## For Cursor / Windsurf / Other MCP Clients
+## Claude Desktop
 
-Same MCP endpoint URL, just configure it in each client's MCP settings:
-- **Cursor:** Settings > MCP Servers > Add
-- **Windsurf:** Settings > MCP > Add Server
+Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
+```json
+{
+  "mcpServers": {
+    "mumcp": {
+      "url": "https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/mcp",
+      "headers": {"X-API-Key": "spai_YOUR_KEY"}
+    }
+  }
+}
+```
+Restart Claude Desktop after saving.
+
+## Cursor
+
+Settings > MCP Servers > Add:
+- **Name:** mumcp
+- **URL:** `https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/mcp`
+- **Header:** `X-API-Key: spai_YOUR_KEY`
+
+## Windsurf
+
+Settings > MCP > Add Server:
+- **URL:** `https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/mcp`
+- **Headers:** `{"X-API-Key": "spai_YOUR_KEY"}`
+
+## Multiple Sites
+
+Use a unique name per site in `mcpServers`:
+```json
+{
+  "mcpServers": {
+    "mumcp-staging": {
+      "url": "https://staging.example.com/wp-json/site-pilot-ai/v1/mcp",
+      "headers": {"X-API-Key": "spai_STAGING_KEY"}
+    },
+    "mumcp-prod": {
+      "url": "https://example.com/wp-json/site-pilot-ai/v1/mcp",
+      "headers": {"X-API-Key": "spai_PROD_KEY"}
+    }
+  }
+}
+```
+
+## Verify Connection
+
+After saving config, call `wp_introspect()` — returns site info, available tools, and capabilities.
 
 ## Troubleshooting
 
-- **401 Unauthorized:** Check API key is correct and starts with `spai_`
-- **404 Not Found:** Plugin might not be activated. Check `https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/site-info`
-- **500 Error:** Check WP debug log. Common cause: PHP version < 7.4
-- **CORS error:** Add your domain to mumcp > Settings > Allowed Origins
+- **401 Unauthorized:** API key wrong or missing. Must start with `spai_`.
+- **404 Not Found:** Plugin not activated. Check `https://YOUR-SITE.com/wp-json/site-pilot-ai/v1/site-info`
+- **500 Error:** Check WP debug log. Common cause: PHP < 7.4.
+- **CORS error:** Add your domain in WP Admin > mumcp > Settings > Allowed Origins.
