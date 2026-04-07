@@ -5,10 +5,13 @@ Connect Claude Code to any WordPress site. 239 MCP tools for managing pages, Ele
 ## Install
 
 ```bash
-claude plugin add Mumega-com/mumcp-claude-plugin
+claude plugin marketplace add https://github.com/Mumega-com/mumcp-claude-plugin.git
+claude plugin install mumcp@mumcp
 ```
 
-Or clone manually:
+Then restart Claude Code or run `/reload-plugins`.
+
+**Alternative** — clone manually:
 ```bash
 git clone https://github.com/Mumega-com/mumcp-claude-plugin.git ~/.claude/plugins/mumcp
 ```
