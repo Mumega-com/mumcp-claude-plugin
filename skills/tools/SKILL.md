@@ -1,3 +1,9 @@
+---
+name: tools
+description: Browse all 239 mumcp MCP tools by category — pages, Elementor, WooCommerce, media, SEO, and more. Use to discover available tools before working with a WordPress site.
+user-invocable: true
+---
+
 # mumcp Tools Reference
 
 Browse and learn about all 239 mumcp MCP tools. $ARGUMENTS = category name or tool name.

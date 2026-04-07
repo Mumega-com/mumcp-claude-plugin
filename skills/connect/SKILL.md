@@ -1,3 +1,9 @@
+---
+name: connect
+description: Set up a mumcp MCP connection to a WordPress site. Guided install, API key generation, and MCP config for Claude, Cursor, Windsurf, Gemini.
+user-invocable: true
+---
+
 # Connect to WordPress
 
 Set up a mumcp connection to a WordPress site. $ARGUMENTS = site URL and API key, or "setup" for guided flow.

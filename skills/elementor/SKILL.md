@@ -1,3 +1,9 @@
+---
+name: elementor
+description: Build and edit Elementor pages via mumcp — layout modes, widget keys, flex grids, blueprints, validation, CSS regeneration. Use before working with Elementor data.
+user-invocable: true
+---
+
 # Elementor Building Guide
 
 How to build and edit Elementor pages via mumcp. $ARGUMENTS = action or page ID.
