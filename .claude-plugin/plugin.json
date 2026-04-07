@@ -1,19 +1,6 @@
 {
   "name": "mumcp",
+  "description": "Connect Claude Code to any WordPress site via MCP. 239 tools for pages, Elementor, WooCommerce, media, SEO. Includes /mumcp:connect, /mumcp:tools, /mumcp:elementor, /mumcp:design skills and wp-builder agent.",
   "version": "1.0.0",
-  "description": "Connect Claude Code to any WordPress site via mumcp — 239 MCP tools for managing pages, Elementor, WooCommerce, media, SEO, and more through natural language.",
-  "author": "Mumega",
-  "homepage": "https://mucp.mumega.com",
-  "repository": "https://github.com/Mumega-com/mumcp-claude-plugin",
-  "license": "MIT",
-  "keywords": ["wordpress", "mcp", "elementor", "woocommerce", "cms"],
-  "skills": [
-    "skills/connect.md",
-    "skills/tools.md",
-    "skills/elementor.md",
-    "skills/design.md"
-  ],
-  "agents": [
-    "agents/wp-builder.md"
-  ]
+  "keywords": ["wordpress", "mcp", "elementor", "woocommerce", "cms"]
 }
